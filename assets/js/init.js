@@ -1,3 +1,20 @@
+const sizeBoard= 702;
+const sizeCell= sizeBoard / 9;
+const sizeChess= sizeCell - 10;
+const classFonts = [
+   'fa-solid fa-chess-pawn',
+   'fa-solid fa-chess-rook',
+   'fa-solid fa-chess-knight',
+   'fa-solid fa-chess-bishop',
+   'fa-solid fa-chess-queen',
+   'fa-solid fa-chess-king',
+   'fa-solid fa-chess-bishop',
+   'fa-solid fa-chess-knight',
+   'fa-solid fa-chess-rook',
+];
+const nameChesses = ['Pawn','Rook1','Knight1','Bishop1','Queen','King','Bishop2','Knight2','Rook2',];
+const idWhites = nameChesses.map((name)=>'w'+name);
+const idBlacks = nameChesses.map((name)=>'b'+name);
 function init() {
    var chessboard = document.querySelector('#chessboard');
    for (let i = 8; i >= 0; i--) {
@@ -23,8 +40,31 @@ function init() {
             }
          }
          chessboard.appendChild(cell);
-         
       }
    }
+   
+   initPosition(1,2,'white');
+   initPosition(8,7,'black');
+}
 
+function initPosition(i,iPawn,color){
+   for(let j =1;j<=8;j++){
+      let chess = document.createElement('i');
+      chess.id = color=='white'? idWhites[j] : idBlacks[j];
+      chess.className = classFonts[j];
+      chess.classList.add('chess',color);
+      chess.setAttribute('xy',`${i}${j}`)
+      var cell = document.getElementById(`${i}${j}`);
+      cell.appendChild(chess);
+   }
+
+   for(let j =1;j<=8;j++){
+      let chess = document.createElement('i');
+      chess.id = (color=='white'? idWhites[0] : idBlacks[0]) + j.toString() ;
+      chess.className = classFonts[0];
+      chess.classList.add('chess',color);
+      chess.setAttribute('xy',`${iPawn}${j}`)
+      var cell = document.getElementById(`${iPawn}${j}`);
+      cell.appendChild(chess);
+   }
 }

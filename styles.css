@@ -1,8 +1,8 @@
 :root {
-   --size-board:702px;
-   --size-cell:calc(var(--size-board)/9);
-   --size-chess:calc(var(--size-cell) - 10px);
-   --size-heading:calc(var(--size-cell)/4);
+   --size-board: 702px;
+   --size-cell: calc(var(--size-board)/9);
+   --size-chess: calc(var(--size-cell) - 10px);
+   --size-heading: calc(var(--size-cell)/4);
 }
 
 html {
@@ -27,8 +27,8 @@ body {
 
 #chessboard {
    display: grid;
-   grid-template-rows: repeat(9,1fr);
-   grid-template-columns: repeat(9,1fr);
+   grid-template-rows: repeat(9, 1fr);
+   grid-template-columns: repeat(9, 1fr);
    width: var(--size-board);
    height: var(--size-board);
 }
@@ -53,133 +53,17 @@ body {
 }
 
 .chess {
+   cursor: pointer;
+   -webkit-user-select: none;
+   -ms-user-select: none;
+   user-select: none;
    font-size: calc(var(--size-chess));
 }
 
 .heading {
+   -webkit-user-select: none;
+   -ms-user-select: none;
+   user-select: none;
    color: black;
    font-size: calc(var(--size-heading));
 }
-
-/* .chessmans {
-   z-index: 1;
-   position: absolute;
-   width: 100%;
-   height: 100%;
-   top: 0;
-   left: 0;
-   display: grid;
-   grid-template-rows: repeat(8,1fr);
-   grid-template-columns: repeat(8,1fr);
-}
-
-.chess {
-   position: absolute;
-   display: inline-block;
-   width: 12.5%; 
-   height: 12.5%;
-    z-index: 2;
-   text-align: center;
-}
-
-.chess:hover {
-   cursor: pointer;
-}
-
-.chess--black {
-   top:0;
-}
-
-.chess--white {
-   top: calc(var(--size-board) - var(--size-cell));
-}
-
-.chess--rook-l {
-   left: 0;
-}
-
-.chess--rook-r {
-   left: calc(var(--size-board) - var(--size-cell));
-}
-
-.chess--knight-l {
-   left: var(--size-cell);
-}
-
-.chess--knight-r {
-   left: calc(var(--size-board) - 2*var(--size-cell));
-}
-
-.chess--bishop-l {
-   left: calc(2*var(--size-cell));
-}
-
-.chess--bishop-r {
-   left: calc(var(--size-board) - 3*var(--size-cell));
-}
-
-.chess--queen {
-   left: calc(3*var(--size-cell));
-}
-
-.chess--king {
-   left: calc(var(--size-board) - 4*var(--size-cell));
-}
-
-.chess--pawn-black {
-   top:var(--size-cell);
-}
-
-.chess--pawn-white {
-   top:calc(var(--size-board) - 2*var(--size-cell));
-}
-
-.chess--pawn-1 {
-   left: 0;
-}
-
-.chess--pawn-2{
-   left:var(--size-cell);
-}
-
-.chess--pawn-3{
-   left:calc(2*var(--size-cell));
-}
-
-.chess--pawn-4{
-   left:calc(3*var(--size-cell));
-}
-
-.chess--pawn-5{
-   left:calc(4*var(--size-cell));
-}
-
-.chess--pawn-6 {
-   left:calc(5*var(--size-cell));
-}
-
-.chess--pawn-7{
-   left:calc(6*var(--size-cell));
-}
-
-.chess--pawn-8{
-   left:calc(7*var(--size-cell));
-}
-
-.chess i {
-   font-size: 70px;
-   line-height: var(--size-cell);
-}
-
-.icon-black {
-   color:#000;
-}
-
-.icon-white {
-   color: #fff;
-} */
-/* 
-.chess--white.chess--king {
-   grid-row: 3/4;
-   grid-column: 3/4;
-} */
