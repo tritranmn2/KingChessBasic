@@ -1,18 +1,3 @@
-const sizeBoard= 702;
-const sizeCell= sizeBoard / 9;
-const sizeChess= sizeCell - 10;
-const classFonts = [
-   'fa-solid fa-chess-pawn',
-   'fa-solid fa-chess-rook',
-   'fa-solid fa-chess-knight',
-   'fa-solid fa-chess-bishop',
-   'fa-solid fa-chess-queen',
-   'fa-solid fa-chess-king',
-   'fa-solid fa-chess-bishop',
-   'fa-solid fa-chess-knight',
-   'fa-solid fa-chess-rook',
-];
-const nameChesses = ['Pawn','Rook1','Knight1','Bishop1','Queen','King','Bishop2','Knight2','Rook2',];
 const idWhites = nameChesses.map((name)=>'w'+name);
 const idBlacks = nameChesses.map((name)=>'b'+name);
 function init() {
@@ -45,6 +30,9 @@ function init() {
    
    initPosition(1,2,'white');
    initPosition(8,7,'black');
+   for(let i=-7;i<=7;i++){
+      console.log('[',i,',',i,']')
+   }
 }
 
 function initPosition(i,iPawn,color){
