@@ -2,6 +2,7 @@ const sizeBoard= 702;
 const sizeCell= sizeBoard / 9;
 const sizeChess= sizeCell - 10;
 const future = 'orange';
+const kill = 'red';
 const classFonts = [
    'fa-solid fa-chess-pawn',
    'fa-solid fa-chess-rook',

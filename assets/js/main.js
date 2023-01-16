@@ -1,4 +1,3 @@
-const a =10;
 // var chessmans = document.querySelectorAll('.chess');
 // var xOld,yOld;
 // var x0=0, y0=0, x=0, y=0, dx=0, dy=0;

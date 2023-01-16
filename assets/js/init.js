@@ -30,9 +30,8 @@ function init() {
    
    initPosition(1,2,'white');
    initPosition(8,7,'black');
-   for(let i=-7;i<=7;i++){
-      console.log('[',i,',',i,']')
-   }
+   createScript('./assets/js/handleMove.js');
+
 }
 
 function initPosition(i,iPawn,color){
