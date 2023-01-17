@@ -36,3 +36,4 @@ const arrKing = [
 const arrPawn = [
    [1,0]
 ];
+

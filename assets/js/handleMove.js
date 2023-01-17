@@ -1,28 +1,38 @@
-
-let chesses = document.querySelectorAll('.chess');
-chesses.forEach((chess) => chess.onclick = handleMove);
+var chessesWhite = document.querySelectorAll('i[id^="w"]');
+var chessesBlack = document.querySelectorAll('i[id^="b"]');
+if(turnWhite){
+   chessesBlack.forEach((chess) => chess.onclick = null);
+   chessesWhite.forEach((chess) => chess.onclick = handleMove);
+}else{
+   chessesWhite.forEach((chess) => chess.onclick = null);
+   chessesBlack.forEach((chess) => chess.onclick = handleMove);
+}
 
 function handleMove(e) {
+   console.log(e)
+   e.stopPropagation();
    let chess = e.target, idChess = chess.id, nameChess = getNameChess(idChess);
+   let color = idChess[0];
    let cell = chess.parentElement, idCell = cell.id;
+   console.log(nameChess)
    switch (nameChess) {
       case 'Rook':
          Rook(idCell);
          break;
       case 'Knight':
-
+         Knight(idCell);
          break;
       case 'Bishop':
-
+         Bishop(idCell);
          break;
       case 'Queen':
-
+         Queen(idCell);
          break;
       case 'King':
-
+         King(idCell);
          break;
       case 'Pawn':
-
+         Pawn(idCell);
          break;
 
       default:

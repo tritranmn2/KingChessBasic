@@ -1,6 +1,8 @@
 const idWhites = nameChesses.map((name)=>'w'+name);
 const idBlacks = nameChesses.map((name)=>'b'+name);
+var turnWhite = true;
 function init() {
+   turnWhite=true;
    var chessboard = document.querySelector('#chessboard');
    for (let i = 8; i >= 0; i--) {
       for (let j = 0; j <= 8; j++) {
