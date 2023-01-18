@@ -171,3 +171,52 @@ function fullColor(idCell, direc, name = true) {
    } while (curCoor.x <= 8 && curCoor.x >= 1 && curCoor.y <= 8 && curCoor.y >= 1);
 }
 
+function fullColorPawn(idCell, direc) {
+   let curChessColor = isWhiteCell(idCell);
+   let curCoor = new Coordinate(idCell);
+   switch (direc) {
+      case 'top':
+         curCoor.x += 1;
+         break;
+      case 'bottom':
+         curCoor.x -= 1;
+         break;
+      case 'top-left':
+         curCoor.y -= 1;
+         curCoor.x += 1;
+         break;
+      case 'bottom-left':
+         curCoor.y -= 1;
+         curCoor.x -= 1;
+         break;
+      case 'top-right':
+         curCoor.y += 1;
+         curCoor.x += 1;
+         break;
+      case 'botom-right':
+         curCoor.y += 1;
+         curCoor.x -= 1;
+         break;
+      case 'top-2':
+         curCoor.x += 2;
+         break;
+      case 'bottom-2':
+         curCoor.x -= 2;
+         break;
+      default:
+         break;
+   }
+   if (!curCoor.isValid()) return;
+   let id = curCoor.toString();
+   let isWhite = isWhiteCell(id);
+   let isBlack = isBlackCell(id);
+   if (direc == 'top' || direc == 'bottom' || direc == 'top-2' || direc == 'bottom-2'){
+      if (!isWhite && !isBlack) fullColorBackground(id, future);
+   }else{
+      if ((curChessColor && isBlack) || ((!curChessColor && isWhite))) {
+         fullColorBackground(id, kill); return;
+      }
+   }
+     
+}
+
