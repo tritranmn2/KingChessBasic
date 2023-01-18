@@ -10,6 +10,7 @@ if(turnWhite){
 
 function handleMove(e) {
    e.stopPropagation();
+   removeColor();
    let chess = e.target, idChess = chess.id, nameChess = getNameChess(idChess);
    let cell = chess.parentElement, idCell = cell.id;
    switch (nameChess) {

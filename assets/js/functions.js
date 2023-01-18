@@ -1,3 +1,12 @@
+function turnOfWhite() {
+   chessesBlack.forEach((chess) => chess.onclick = null);
+   chessesWhite.forEach((chess) => chess.onclick = handleMove);
+}
+
+function turnOfBlack() {
+   chessesWhite.forEach((chess) => chess.onclick = null);
+   chessesBlack.forEach((chess) => chess.onclick = handleMove);
+}
 
 class Coordinate {
    constructor(strCoor) {
@@ -28,6 +37,11 @@ class Coordinate {
 function moveToXY(idOld, idNew) {
    let cell = document.getElementById(idOld);
    let chess = cell.firstElementChild;
+   if (getNameChess(chess.id) == 'Pawn') {
+      if (chess.getAttribute('firstturn') == 'true') {
+         chess.setAttribute('firstturn', 'false');
+      }
+   }
    cell.removeChild(chess);
    cell = document.getElementById(idNew);
    if (cell.classList.contains('red')) {
@@ -47,12 +61,20 @@ function removeColorBackground(id, color) {
    }
 }
 
-function fullArrayBackground(arr) {
-   arr.forEach(id => fullColorBackground(id, future));
-}
 
-function removeArrayBackground(arr) {
-   arr.forEach(id => removeColorBackground(id, future));
+function removeColor(){
+   let futureCell = document.querySelectorAll('.orange');
+   let killCell = document.querySelectorAll('.red');
+   futureCell.forEach((c) => {
+      c.onclick = null;
+      removeColorBackground(c.id, future);
+   })
+   killCell.forEach((c) => {
+      c.onclick = null;
+      removeColorBackground(c.id, kill);
+   })
+   delete futureCell;
+   delete killCell;
 }
 
 function getNameChess(id) {
@@ -110,7 +132,7 @@ function fullColor(idCell, direc, name = true) {
             curCoor.y += 1;
             curCoor.x += 1;
             break;
-         case 'botom-right':
+         case 'bottom-right':
             curCoor.y += 1;
             curCoor.x -= 1;
             break;
@@ -146,12 +168,6 @@ function fullColor(idCell, direc, name = true) {
             curCoor.x += -2;
             curCoor.y += -1;
             break;
-         case 'top-2':
-            curCoor.x += 2;
-            break;
-         case 'bottom-2':
-            curCoor.x -= 2;
-            break;
          default:
             break;
       }
@@ -159,7 +175,9 @@ function fullColor(idCell, direc, name = true) {
       let id = curCoor.toString();
       let isWhite = isWhiteCell(id);
       let isBlack = isBlackCell(id);
-      if (!isWhite && !isBlack) fullColorBackground(id, future);
+      if (!isWhite && !isBlack) {
+         fullColorBackground(id, future);
+      }
       else {
          if ((curChessColor && isWhite) || (!curChessColor && isBlack)) break;
          else if ((curChessColor && isBlack) || ((!curChessColor && isWhite))) {
@@ -171,52 +189,52 @@ function fullColor(idCell, direc, name = true) {
    } while (curCoor.x <= 8 && curCoor.x >= 1 && curCoor.y <= 8 && curCoor.y >= 1);
 }
 
-function fullColorPawn(idCell, direc) {
+function fullColorPawn(idCell, direc,step=1) {
    let curChessColor = isWhiteCell(idCell);
    let curCoor = new Coordinate(idCell);
-   switch (direc) {
-      case 'top':
-         curCoor.x += 1;
-         break;
-      case 'bottom':
-         curCoor.x -= 1;
-         break;
-      case 'top-left':
-         curCoor.y -= 1;
-         curCoor.x += 1;
-         break;
-      case 'bottom-left':
-         curCoor.y -= 1;
-         curCoor.x -= 1;
-         break;
-      case 'top-right':
-         curCoor.y += 1;
-         curCoor.x += 1;
-         break;
-      case 'botom-right':
-         curCoor.y += 1;
-         curCoor.x -= 1;
-         break;
-      case 'top-2':
-         curCoor.x += 2;
-         break;
-      case 'bottom-2':
-         curCoor.x -= 2;
-         break;
-      default:
-         break;
-   }
-   if (!curCoor.isValid()) return;
-   let id = curCoor.toString();
-   let isWhite = isWhiteCell(id);
-   let isBlack = isBlackCell(id);
-   if (direc == 'top' || direc == 'bottom' || direc == 'top-2' || direc == 'bottom-2'){
-      if (!isWhite && !isBlack) fullColorBackground(id, future);
-   }else{
-      if ((curChessColor && isBlack) || ((!curChessColor && isWhite))) {
-         fullColorBackground(id, kill); return;
+   do {
+      switch (direc) {
+         case 'top':
+            curCoor.x += 1;
+            break;
+         case 'bottom':
+            curCoor.x -= 1;
+            break;
+         case 'top-left':
+            curCoor.y -= 1;
+            curCoor.x += 1;
+            break;
+         case 'bottom-left':
+            curCoor.y -= 1;
+            curCoor.x -= 1;
+            break;
+         case 'top-right':
+            curCoor.y += 1;
+            curCoor.x += 1;
+            break;
+         case 'bottom-right':
+            curCoor.y += 1;
+            curCoor.x -= 1;
+            break;
+         default:
+            break;
       }
-   }
-     
+
+      if (!curCoor.isValid()) break;
+      let id = curCoor.toString();
+      let isWhite = isWhiteCell(id);
+      let isBlack = isBlackCell(id);
+      if (direc == 'top' || direc == 'bottom') {
+         if (isWhite || isBlack) break;
+         if (!isWhite && !isBlack) fullColorBackground(id, future);
+      }
+      else {
+         if ((curChessColor && isBlack) || ((!curChessColor && isWhite))) {
+            fullColorBackground(id, kill); break;
+         }
+      }
+      step-=1;
+   } while (step>=1);
+
 }
 

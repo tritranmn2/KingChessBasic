@@ -1,33 +1,13 @@
-function turnOfWhite() {
-   chessesBlack.forEach((chess) => chess.onclick = null);
-   chessesWhite.forEach((chess) => chess.onclick = handleMove);
-}
-
-function turnOfBlack() {
-   chessesWhite.forEach((chess) => chess.onclick = null);
-   chessesBlack.forEach((chess) => chess.onclick = handleMove);
-}
 
 
 function rule(idCell) {
-   let futureCell = document.querySelectorAll('.orange');
-   let killCell = document.querySelectorAll('.red');
    let cells = document.querySelectorAll('.orange, .red');
-
    cells.forEach((cell) => {
       cell.onclick = function (e) {
          let cell = e.currentTarget, idNew = cell.id;
          moveToXY(idCell, idNew);
          turnWhite = !turnWhite;
-         futureCell.forEach((c) => {
-            c.onclick = null;
-            removeColorBackground(c.id, future);
-         })
-         killCell.forEach((c) => {
-            c.onclick = null;
-            removeColorBackground(c.id, kill);
-         })
-         console.log(turnWhite)
+         removeColor();
          if (turnWhite) {
             turnOfWhite();
          }
@@ -43,8 +23,6 @@ function Rook(idCell) {
    fullColor(idCell, 'bottom');
    fullColor(idCell, 'right');
    fullColor(idCell, 'left');
-   // Di chuyen
-
    rule(idCell);
 }
 
@@ -57,8 +35,6 @@ function Knight(idCell) {
    fullColor(idCell, 'knight-6', 'knight');
    fullColor(idCell, 'knight-7', 'knight');
    fullColor(idCell, 'knight-8', 'knight');
-   // Di chuyen
-
    rule(idCell);
 }
 
@@ -67,8 +43,6 @@ function Bishop(idCell) {
    fullColor(idCell, 'bottom-left');
    fullColor(idCell, 'top-right');
    fullColor(idCell, 'bottom-right');
-   // Di chuyen
-
    rule(idCell);
 }
 
@@ -77,8 +51,6 @@ function King(idCell) {
    fullColor(idCell, 'bottom', 'king');
    fullColor(idCell, 'right', 'king');
    fullColor(idCell, 'left', 'king');
-   // Di chuyen
-
    rule(idCell);
 }
 
@@ -87,17 +59,14 @@ function Pawn(idCell) {
 
    if (chess.getAttribute('firstturn') == 'true') {
       if (isWhiteCell(idCell)) {
-         fullColorPawn(idCell, 'top');
-         fullColorPawn(idCell, 'top-2');
+         fullColorPawn(idCell, 'top',2);
          fullColorPawn(idCell, 'top-left');
          fullColorPawn(idCell, 'top-right');
       } else {
-         fullColorPawn(idCell, 'bottom');
-         fullColorPawn(idCell, 'bottom-2');
+         fullColorPawn(idCell, 'bottom',2);
          fullColorPawn(idCell, 'bottom-left');
          fullColorPawn(idCell, 'bottom-right');
       }
-      chess.setAttribute('firstturn', 'false');
    }
    else {
       if (isWhiteCell(idCell)) {
@@ -111,8 +80,6 @@ function Pawn(idCell) {
       }
 
    }
-   // Di chuyen
-
    rule(idCell);
 }
 
@@ -125,7 +92,6 @@ function Queen(idCell) {
    fullColor(idCell, 'bottom-left');
    fullColor(idCell, 'top-right');
    fullColor(idCell, 'bottom-right');
-   // Di chuyen
-
    rule(idCell);
 }
+
