@@ -40,6 +40,9 @@ body {
    background-color: #bbbebc;
 }
 
+.cell:hover {
+   outline: 1px solid blue;
+}
 .cell--black {
    background-color: #33807b;
 }

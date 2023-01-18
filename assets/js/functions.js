@@ -26,12 +26,11 @@ class Coordinate {
 }
 
 function moveToXY(idOld, idNew) {
-   // console.log(turnWhite)
    let cell = document.getElementById(idOld);
    let chess = cell.firstElementChild;
    cell.removeChild(chess);
    cell = document.getElementById(idNew);
-   if(cell.classList.contains('red')){
+   if (cell.classList.contains('red')) {
       cell.removeChild(cell.firstElementChild);
    }
    cell.appendChild(chess);
@@ -143,9 +142,15 @@ function fullColor(idCell, direc, name = true) {
             curCoor.x += -2;
             curCoor.y += 1;
             break;
-         case 'knight-6':
+         case 'knight-8':
             curCoor.x += -2;
             curCoor.y += -1;
+            break;
+         case 'top-2':
+            curCoor.x += 2;
+            break;
+         case 'bottom-2':
+            curCoor.x -= 2;
             break;
          default:
             break;
@@ -162,6 +167,7 @@ function fullColor(idCell, direc, name = true) {
          }
       }
       if (name != true) break;
+
    } while (curCoor.x <= 8 && curCoor.x >= 1 && curCoor.y <= 8 && curCoor.y >= 1);
 }
 

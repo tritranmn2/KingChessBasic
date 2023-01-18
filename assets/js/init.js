@@ -42,7 +42,6 @@ function initPosition(i,iPawn,color){
       chess.id = color=='white'? idWhites[j] : idBlacks[j];
       chess.className = classFonts[j];
       chess.classList.add('chess',color);
-      chess.setAttribute('xy',`${i}${j}`)
       var cell = document.getElementById(`${i}${j}`);
       cell.appendChild(chess);
    }
@@ -52,7 +51,7 @@ function initPosition(i,iPawn,color){
       chess.id = (color=='white'? idWhites[0] : idBlacks[0]) + j.toString() ;
       chess.className = classFonts[0];
       chess.classList.add('chess',color);
-      chess.setAttribute('xy',`${iPawn}${j}`)
+      chess.setAttribute('firstTurn','true')
       var cell = document.getElementById(`${iPawn}${j}`);
       cell.appendChild(chess);
    }

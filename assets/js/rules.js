@@ -1,18 +1,11 @@
-
-// var chessesWhite = document.querySelectorAll('i[id^="w"]');
-// var chessesBlack = document.querySelectorAll('i[id^="b"]');
 function turnOfWhite(){
-   console.log(chessesWhite)
-
    chessesBlack.forEach((chess) => chess.onclick = null);
    chessesWhite.forEach((chess) => chess.onclick = handleMove);
 }
 
 function turnOfBlack(){
    chessesWhite.forEach((chess) => chess.onclick = null);
-   chessesBlack.forEach((chess) => {
-      chess.onclick = handleMove;
-   });
+   chessesBlack.forEach((chess) =>chess.onclick = handleMove);
 }
 
 
@@ -56,14 +49,14 @@ function Rook(idCell){
 }
 
 function Knight(idCell){
-   fullColor(idCell,'knight-1');
-   fullColor(idCell,'knight-2');
-   fullColor(idCell,'knight-3');
-   fullColor(idCell,'knight-4');
-   fullColor(idCell,'knight-5');
-   fullColor(idCell,'knight-6');
-   fullColor(idCell,'knight-7');
-   fullColor(idCell,'knight-8');
+   fullColor(idCell,'knight-1','knight');
+   fullColor(idCell,'knight-2','knight');
+   fullColor(idCell,'knight-3','knight');
+   fullColor(idCell,'knight-4','knight');
+   fullColor(idCell,'knight-5','knight');
+   fullColor(idCell,'knight-6','knight');
+   fullColor(idCell,'knight-7','knight');
+   fullColor(idCell,'knight-8','knight');
    // Di chuyen
   
    rule(idCell);
@@ -90,8 +83,26 @@ function King(idCell){
 }
 
 function Pawn(idCell){
-   fullColor(idCell,'top','pawn');
-   fullColor(idCell,'bottom','pawn');
+   let chess =  document.getElementById(idCell).firstElementChild;
+
+   if(chess.getAttribute('firstturn')=='true'){
+      if(isWhiteCell(idCell)){
+         fullColor(idCell,'top','pawn');
+         fullColor(idCell,'top-2','pawn');
+      }else{
+         fullColor(idCell,'bottom','pawn');
+         fullColor(idCell,'bottom-2','pawn');
+      }
+      chess.setAttribute('firstturn','false');
+   }
+   else{
+      if(isWhiteCell(idCell)){
+         fullColor(idCell,'top','pawn');
+      }else{
+         fullColor(idCell,'bottom','pawn');
+      }
+
+   }
    // Di chuyen
   
    rule(idCell);

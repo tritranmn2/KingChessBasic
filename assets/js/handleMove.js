@@ -9,12 +9,9 @@ if(turnWhite){
 }
 
 function handleMove(e) {
-   console.log(e)
    e.stopPropagation();
    let chess = e.target, idChess = chess.id, nameChess = getNameChess(idChess);
-   let color = idChess[0];
    let cell = chess.parentElement, idCell = cell.id;
-   console.log(nameChess)
    switch (nameChess) {
       case 'Rook':
          Rook(idCell);
