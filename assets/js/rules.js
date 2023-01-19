@@ -1,10 +1,27 @@
+function readyRemoveColor(){
+   let cells = document.querySelectorAll('.cell:empty');
+   let total =[];
+   cells.forEach((cell)=>{
+      if(!cell.classList.contains('orange')){
+         total.push(cell);
+      }
+   });
+   total.forEach((cell)=>cell.onclick = function(){
+      removeColor();
+      total.forEach((cell)=>cell.onclick = null);
+   })
+   delete cells,total;
+}
+
 
 
 function rule(idCell) {
+   readyRemoveColor();
    let cells = document.querySelectorAll('.orange, .red');
    cells.forEach((cell) => {
       cell.onclick = function (e) {
          let cell = e.currentTarget, idNew = cell.id;
+         
          moveToXY(idCell, idNew);
          turnWhite = !turnWhite;
          removeColor();

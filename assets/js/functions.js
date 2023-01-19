@@ -1,9 +1,23 @@
 function turnOfWhite() {
+   // Hiển thị 👉
+   playerWhite.querySelector('i').classList.add('turn');
+   playerBlack.querySelector('i').classList.remove('turn');
+   // Cập nhật điểm của quân đen
+   let point = "Điểm: "+ pointBlack.toString();
+   playerBlack.querySelector('.point').innerText = point;
+   // Lắng nghe click ở các quân trắng
    chessesBlack.forEach((chess) => chess.onclick = null);
    chessesWhite.forEach((chess) => chess.onclick = handleMove);
 }
 
 function turnOfBlack() {
+   // Hiển thị 👉
+   playerWhite.querySelector('i').classList.remove('turn');
+   playerBlack.querySelector('i').classList.add('turn');
+   // Cập nhật điểm của quân trắng
+   let point = "Điểm: "+ pointWhite.toString();
+   playerWhite.querySelector('.point').innerText = point;
+   // Lắng nghe click ở các quân đen
    chessesWhite.forEach((chess) => chess.onclick = null);
    chessesBlack.forEach((chess) => chess.onclick = handleMove);
 }
@@ -36,6 +50,8 @@ class Coordinate {
 
 function moveToXY(idOld, idNew) {
    let cell = document.getElementById(idOld);
+   let isWhite = isWhiteCell(idOld);
+   let isBlack = isBlackCell(idOld);
    let chess = cell.firstElementChild;
    if (getNameChess(chess.id) == 'Pawn') {
       if (chess.getAttribute('firstturn') == 'true') {
@@ -44,6 +60,11 @@ function moveToXY(idOld, idNew) {
    }
    cell.removeChild(chess);
    cell = document.getElementById(idNew);
+   let isRedCell = cell.classList.contains('red');
+   if (isRedCell) {
+      if (isWhite) {pointWhite += 1;}
+      else if(isBlack) {pointBlack += 1;}
+   }
    if (cell.classList.contains('red')) {
       cell.removeChild(cell.firstElementChild);
    }
@@ -62,7 +83,7 @@ function removeColorBackground(id, color) {
 }
 
 
-function removeColor(){
+function removeColor() {
    let futureCell = document.querySelectorAll('.orange');
    let killCell = document.querySelectorAll('.red');
    futureCell.forEach((c) => {
@@ -189,7 +210,7 @@ function fullColor(idCell, direc, name = true) {
    } while (curCoor.x <= 8 && curCoor.x >= 1 && curCoor.y <= 8 && curCoor.y >= 1);
 }
 
-function fullColorPawn(idCell, direc,step=1) {
+function fullColorPawn(idCell, direc, step = 1) {
    let curChessColor = isWhiteCell(idCell);
    let curCoor = new Coordinate(idCell);
    do {
@@ -233,8 +254,8 @@ function fullColorPawn(idCell, direc,step=1) {
             fullColorBackground(id, kill); break;
          }
       }
-      step-=1;
-   } while (step>=1);
+      step -= 1;
+   } while (step >= 1);
 
 }
 

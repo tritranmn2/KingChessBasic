@@ -1,12 +1,13 @@
+var playerBlack = document.querySelector('#black');
+var playerWhite = document.querySelector('#white');
 var chessesWhite = document.querySelectorAll('i[id^="w"]');
 var chessesBlack = document.querySelectorAll('i[id^="b"]');
-if(turnWhite){
-   chessesBlack.forEach((chess) => chess.onclick = null);
-   chessesWhite.forEach((chess) => chess.onclick = handleMove);
-}else{
-   chessesWhite.forEach((chess) => chess.onclick = null);
-   chessesBlack.forEach((chess) => chess.onclick = handleMove);
-}
+
+chessesBlack.forEach((chess) => chess.onclick = null);
+chessesWhite.forEach((chess) => chess.onclick = handleMove);
+playerWhite.querySelector('i').classList.add('turn');
+
+
 
 function handleMove(e) {
    e.stopPropagation();

@@ -74,10 +74,35 @@ body {
    font-size: calc(var(--size-chess));
 }
 
+
+
 .heading {
    -webkit-user-select: none;
    -ms-user-select: none;
    user-select: none;
    color: black;
    font-size: calc(var(--size-heading));
+}
+
+.infor {
+   font-size: 18px;
+}
+
+.player i {
+   visibility: hidden;
+}
+
+.player .turn {
+   visibility: visible !important;
+}
+
+#black {
+   margin-top: 16px;
+   align-self: flex-start;
+}
+
+#white {
+   margin-bottom: 16px;
+   margin-left: 40px;
+   align-self: flex-end;
 }
